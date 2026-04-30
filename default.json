@@ -1,10 +1,19 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:best-practices"],
+  "ignorePresets": ["helpers:pinGitHubActionDigests"],
   "semanticCommits": "enabled",
   "labels": ["dependencies"],
   "rebaseWhen": "conflicted",
   "timezone": "America/Fortaleza",
   "prConcurrentLimit": 5,
-  "branchConcurrentLimit": 5
+  "branchConcurrentLimit": 5,
+  "packageRules": [
+    {
+      "description": "Automerge non-major development dependency updates.",
+      "matchDepTypes": ["devDependencies", "dev-dependencies", "dev"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    }
+  ]
 }
